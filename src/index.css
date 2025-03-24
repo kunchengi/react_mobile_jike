@@ -1,0 +1,65 @@
+/* 清除所有元素内外边距 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 设置基础文本样式 */
+body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    /* 字体抗锯齿 */
+}
+
+/* 清除列表样式 */
+ul,
+ol {
+    list-style: none;
+}
+
+/* 重置链接样式 */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* 图片相关重置 */
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* 表单元素重置 */
+input,
+button,
+textarea,
+select {
+    font: inherit;
+    background: none;
+    border: none;
+    outline: none;
+}
+
+/* 移除按钮默认样式 */
+button {
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* 移动端常用扩展重置 */
+@media (max-width: 768px) {
+
+    /* 禁止长按链接与图片弹出菜单 */
+    a,
+    img {
+        -webkit-touch-callout: none;
+    }
+
+    /* 禁止文本缩放 */
+    text {
+        -webkit-text-size-adjust: none;
+    }
+}
