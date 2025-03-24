@@ -1,9 +1,10 @@
+import { Button } from 'antd-mobile';
 
 function App() {
 
   return (
     <>
-      App...
+        <Button>点击</Button>
     </>
   )
 }
