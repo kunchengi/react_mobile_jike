@@ -3,7 +3,7 @@
 ## 技术栈
 * vite
 * react
-* react-router
+* react-router-dom
 * typescript
 * antd-mobile
 
@@ -20,4 +20,11 @@
         <Button>Hello World</Button>
       );
     }
+  ```
+
+## react-router-dom
+
+* 安装
+  ```bash
+    npm i react-router-dom
   ```

@@ -1,10 +1,13 @@
-import { Button } from 'antd-mobile';
+// 引入RouterProvider
+import { RouterProvider } from 'react-router-dom'
+import router from './router'
 
 function App() {
 
   return (
     <>
-        <Button>点击</Button>
+      {/* 渲染路由 */}
+      <RouterProvider router={router} />
     </>
   )
 }
