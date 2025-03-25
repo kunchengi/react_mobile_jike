@@ -2,7 +2,7 @@ import { http } from "@/utils";
 import { ResType } from "./shared";
 
 // 定义请求结果中data的类型
-type ChannelItem = {
+export type ChannelItem = {
     id: number,
     name: string,
 }
