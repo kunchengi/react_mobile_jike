@@ -1,6 +1,6 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
-import Home from "../pages/Home";
-import Detail from "../pages/Detail";
+import Home from "@/pages/Home";
+import Detail from "@/pages/Detail";
 
 // 创建路由配置
 const router = createBrowserRouter([

@@ -28,3 +28,31 @@
   ```bash
     npm i react-router-dom
   ```
+
+## 配置路径别名
+* 安装types/node
+  ```bash
+    npm i -D @types/node
+  ```
+* 修改vite.config.ts
+  ```ts
+    import path from 'path';
+    export default defineConfig({
+      resolve: {
+        alias: {
+          '@': path.resolve(__dirname, './src'),
+        }
+      }
+    })
+  ```
+* 修改tsconfig.app.json
+  ```json
+    {
+      "compilerOptions": {
+        "baseUrl": "./",
+        "paths": {
+          "@/*": ["src/*"]
+        }
+      }
+    }
+  ```
