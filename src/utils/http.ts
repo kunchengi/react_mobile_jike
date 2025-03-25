@@ -2,7 +2,7 @@
 import axios from 'axios'
 
 const httpInstance = axios.create({
-    baseURL: 'http://geek.itheima.net',// 基地址
+    baseURL: 'http://geek.itheima.net/v1_0',// 基地址
     timeout: 5000,// 超时时间
 })
 
