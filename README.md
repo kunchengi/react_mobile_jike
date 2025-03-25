@@ -6,6 +6,7 @@
 * react-router-dom
 * typescript
 * antd-mobile
+* axios
 
 ## antd-mobile
 * 安装
@@ -55,4 +56,10 @@
         }
       }
     }
+  ```
+
+## aixos
+* 安装
+  ```bash
+    npm i axios
   ```
