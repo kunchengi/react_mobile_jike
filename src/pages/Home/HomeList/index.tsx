@@ -1,38 +1,40 @@
 import { Image, List } from "antd-mobile"
+import { useEffect, useState } from "react"
+import { ListRes, getArtListApi } from "@/apis/list"
 
-// 模拟数据
-const source = {
-    results: [
-        {
-            art_id: 1,
-            title: '标题1',
-            pubdate: '2023-08-11 12:00:00',
-            cover: {
-                images: [
-                    'https://p2.itc.cn/images01/20230421/2441396c76624de181dfa0f1fa077ec8.jpeg'
-                ]
-            }
-        },
-        {
-            art_id: 2,
-            title: '标题2',
-            pubdate: '2023-08-11 12:00:00',
-            cover: {
-                images: [
-                    'https://p2.itc.cn/images01/20230421/2441396c76624de181dfa0f1fa077ec8.jpeg'
-                ]
-            }
-        }
-    ]
+type ListProps = {
+    channelId: string; 
 }
 
 // 列表组件
-const HomeList: React.FC = () => {
-    console.log('渲染列表');
+const HomeList: React.FC<ListProps> = ({ channelId }) => {
+    const [list, setList] = useState<ListRes>({
+        results: [],
+        pre_timestamp: '' + new Date().getTime(), 
+    })
+
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const res = await getArtListApi({
+                    channel_id: channelId,
+                    timestamp: '' + new Date().getTime(),
+                })
+                setList({
+                    results: res.data.data.results,
+                    pre_timestamp: res.data.data.pre_timestamp
+                })
+            } catch (error) {
+                throw new Error('获取数据失败');
+            }
+        }
+        fetchData()
+    },[])
+
     return (
         <>
             <List>
-                {source.results.map(item => (
+                {list.results.map(item => (
                     <List.Item
                         key={item.art_id}
                         description={item.pubdate}

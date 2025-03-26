@@ -13,7 +13,7 @@ const Home: React.FC = () => {
                     {channels.map((channel, index) => {
                         return (
                             <Tabs.Tab title={channel.name} key={channel.id}>
-                                <HomeList/>
+                                <HomeList channelId={channel.id.toString()}/>
                             </Tabs.Tab>
                         )
                     })}
