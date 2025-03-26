@@ -1,4 +1,5 @@
 import { Tabs } from "antd-mobile";
+import HomeList from "./HomeList";
 import { useTabs } from "./useTabs";
 import './style.css'
 
@@ -12,7 +13,7 @@ const Home: React.FC = () => {
                     {channels.map((channel, index) => {
                         return (
                             <Tabs.Tab title={channel.name} key={channel.id}>
-                                {channel.name}的内容
+                                <HomeList/>
                             </Tabs.Tab>
                         )
                     })}
