@@ -1,4 +1,4 @@
-import { Image, List } from "antd-mobile"
+import { Image, List, InfiniteScroll } from "antd-mobile"
 import { useEffect, useState } from "react"
 import { ListRes, getArtListApi } from "@/apis/list"
 
@@ -31,6 +31,35 @@ const HomeList: React.FC<ListProps> = ({ channelId }) => {
         fetchData()
     },[])
 
+    /**
+     * 上拉加载
+     * 触发的必要条件：
+     * 1. hsasMore为true
+     * 2. 离底部的距离小于threshold
+     */
+    const [hasMore, setHasMore] = useState(true); // 是否还有更多
+
+    // 加载更多
+    const loadMore = async () => {
+        try {
+            const res = await getArtListApi({
+                channel_id: channelId,
+                timestamp: list.pre_timestamp,// 要传入上一次请求的时间戳，才能获取到下一页的数据
+            })
+            const newDatas = res.data.data.results;
+            setList({
+                results: [...list.results, ...newDatas],// 将新的数据拼接在旧的数据后面
+                pre_timestamp: res.data.data.pre_timestamp// 更新时间戳
+            })
+            // 判断是否还有更多数据
+            if(newDatas.length === 0){
+                setHasMore(false); // 没有更多数据了
+            }
+        } catch (error) {
+            throw new Error('获取数据失败');
+        }
+    }
+
     return (
         <>
             <List>
@@ -52,6 +81,8 @@ const HomeList: React.FC<ListProps> = ({ channelId }) => {
                     </List.Item>
                 ))}
             </List>
+            {/* 无限滚动组件，当滑动到底部时触发loadMore，hasMore为是否还有更多，threshold距离页面底部10ox时才触发 */}
+            <InfiniteScroll loadMore={loadMore} hasMore={hasMore} threshold={10}/>
         </>
     )
 }
