@@ -1,5 +1,6 @@
 import { Image, List, InfiniteScroll } from "antd-mobile"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom";
 import { ListRes, getArtListApi } from "@/apis/list"
 
 type ListProps = {
@@ -60,6 +61,13 @@ const HomeList: React.FC<ListProps> = ({ channelId }) => {
         }
     }
 
+    // 跳转到详情页
+    const navigate = useNavigate();
+    const goToDetail = (art_id: string) => {
+        // 跳转到详情页
+        navigate(`/detail?id=${art_id}`)
+    }
+
     return (
         <>
             <List>
@@ -67,7 +75,7 @@ const HomeList: React.FC<ListProps> = ({ channelId }) => {
                     <List.Item
                         key={item.art_id}
                         description={item.pubdate}
-                        onClick={() => console.log('点击')}
+                        onClick={() => goToDetail(item.art_id)}
                         prefix={
                             <Image
                                 src={item.cover.images?.[0]}

@@ -9,7 +9,8 @@ const Home: React.FC = () => {
         <div>
             {/* 标签栏 */}
             <div className="tabContainer">
-                <Tabs>
+                {/* defaultActiveKey，默认选中第一个 */}
+                <Tabs defaultActiveKey={'0'}>
                     {channels.map((channel, index) => {
                         return (
                             <Tabs.Tab title={channel.name} key={channel.id}>
